@@ -10,28 +10,44 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: List[int]
         """
-        if not root:
-            return []
+        # if not root:
+        #     return []
 
-        q = collections.deque()
-        q.append(root)
+        # q = collections.deque() # type: ignore
+        # q.append(root)
+        # res = []
+
+        # while q:
+        #     level_size = len(q)
+        #     current_level = []
+
+        #     for _ in range(level_size):
+        #         node = q.popleft()
+        #         current_level.append(node.val)
+
+        #         if node.right: # append right node first
+        #             q.append(node.right)
+        #         if node.left:
+        #             q.append(node.left)
+
+        #     if current_level:
+        #         res.append(current_level[0])
+
+
+        # return res 
+    
         res = []
-
+        q = collections.deque()
+        if root: 
+            q.append(root)
+            
         while q:
-            level_size = len(q)
-            current_level = []
-
-            for _ in range(level_size):
+            res.append(q[-1].val)
+            
+            for i in range(len(q)):
                 node = q.popleft()
-                current_level.append(node.val)
+                if node.left: q.append(node.left)
+                if node.right: q.append(node.right)
+                
+        return res
 
-                if node.right: # append right node first
-                    q.append(node.right)
-                if node.left:
-                    q.append(node.left)
-
-            if current_level:
-                res.append(current_level[0])
-
-
-        return res 
