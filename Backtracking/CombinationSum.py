@@ -7,25 +7,27 @@ class Solution(object):
         """
         res = []
         self.target = target
-        subset = []
+        self.subset = []
 
         def dfs(i,total):
 
             if total == self.target:
-                res.append(subset)
+                res.append(self.subset[:])
                 return 
-            elif total > self.target or i >= len(nums):
+            elif total > self.target or i >= len(candidates):
                 return 
             
-            # case to add the same num
-            dfs(i, total + nums[i])
+            self.subset.append(candidates[i])
 
-            subset.pop() # remove last number in subset and then go to next num
+            # case to add the same num
+            dfs(i, total + candidates[i])
+
+            self.subset.pop() # remove last number in subset and then go to next num
 
             # case to add next num
-            dfs(i+1, total + nums[i])
+            dfs(i+1, total)
 
 
-        def(0,0) # start with 0 index and 0 total
+        dfs(0,0) # start with 0 index and 0 total
 
         return res
