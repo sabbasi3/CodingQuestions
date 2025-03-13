@@ -14,8 +14,7 @@ class Solution(object):
         def dfs(i, total):
 
             if total == self.target:
-                if subset[:] not in res:
-                    res.append(subset[:])
+                res.append(subset[:])
                 return
             if i >= len(candidates) or total > self.target:
                 return
